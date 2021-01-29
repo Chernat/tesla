@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="img/logo.png" rel="shortcut icon">
+  <link rel="stylesheet" href="css/tel.css">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="peopleOnPage">
+    <div class="c">106</div>
+    <div>ЧЕЛОВЕК НА СТРАНИЦЕ</div>
+  </div>
+  <div class="freePlaces">
+    <div class="c">15</div>
+    <div>СВОБОДНЫХ МЕСТ</div>
+  </div>
+  <div class="container header">
+    <div class="header__logo">
+      <img src="img/logo.png" alt="logo">
+    </div>
+    <div class="header__title">
+      <h1>Регистрация</h1>
+      <div class="header__desc">Теперь национальные ресурсы в ваших руках!</div>
+    </div>
+    <div class="header__general" id="to_form">
+      <div class="header__video">
+        <video muted src="video/video.mp4" autoplay controls class="js-no-update-height"></video>
+        <div class="VideoControls">
+          <img src="img/youTube.png" class="play" alt="">
+          <div class="playText">Включить звук</div>
+        </div>
+      </div>
+      <div class="header__form">
+        <div class="header__form-header">Начните зарабатывать на <br> государственном газе!</div>
+        <form action="/register" method="post" class="regForm" id="form">
+          <div class="form_control form-group">
+            <input type="text" name="firstname" class="firstname my_input" required="" minlength="3" placeholder="Имя">
+          </div>
+          <div class="form_control form-group">
+            <input type="text" name="lastname" class="lastname my_input" required="" minlength="3"
+              placeholder="Фамилия">
+          </div>
+          <div class="form_control form-group">
+            <input type="email" name="email" class="email my_input" required="" placeholder="Электронная почта">
+          </div>
+          <div class="form_control form-group">
+            <input type="password" name="password" class="password my_input" required="" minlength="3"
+              placeholder="Пароль">
+          </div>
+          <div class="form_control form-group mf">
+            <input type="tel" id="phone1" name="phone" class="my_input" placeholder="">
+          </div>
+          <input type="submit" class="btn header__form-btn" value="Начать зарабатывать">
+          <div class="form_group checkbox_div">
+            <input type="checkbox" name="agreement" checked="">
+            <span>
+              Я даю согласие на сбор адреса моей электронной почты в целях получения коммерческих предложений, которые,
+              по
+              нашему мнению, будут представлять интерес для вас от имени компаний и отраслей, подробно описанных в наших
+              Условиях пользования и Политике конфиденциальности.
+            </span>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+  <footer class="section-8" style="padding: 50px 0px 150px 0px;"> 
+    <div class="section-8__info">
+      <div>*Все результаты работы в данной сфере индивидуальны и зависят от каждого клиента ПАО</div>
+      <div>"ГазПромИнвестинг" ул. Тимура Фрунзе, д. 11, Москва, Россия, 119034, БЦ «Демидов»</div>
+      <div>
+        <a href="/privacy">Политика конфиденциальности</a>
+        ©2019-2020 ГазПромИнвестинг
+      </div>
+    </div>
+  </footer>
+  <script src="js/jquery.js"></script>
+  <script src="js/calc.js"></script>
+  <script src="js/intlTelInput.js"></script>
+  <script>
+    playVideo();
+    function playVideo() {
+      let playMe = $('video'),
+        btnPlay = $('.VideoControls');
+      btnPlay.click(function () {
+        playMe.prop('muted', false);
+        btnPlay.slideUp();
+        $('.hidden_video_controls').css({
+          'top': '0'
+        });
+      });
+
+    }
+
+    $('a[href*="#"]').on('click', function (e) {
+      e.preventDefault();
+
+      $('html, body').animate({
+        scrollTop: $($(this).attr('href')).offset().top
+      }, 800, 'linear');
+    });
+
+    intlTelInput(document.querySelector("#phone1"), {
+      geoIpLookup: function (success, failure) {
+        var countryCode = "de";
+        success(countryCode);
+      },
+      initialCountry: "auto",
+      autoPlaceholder: "aggressive",
+      separateDialCode: true,
+      utilsScript: "./js/utils.js"
+    });
+  </script>
+</body>
+
+</html>
